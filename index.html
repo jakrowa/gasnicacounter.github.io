@@ -32,13 +32,15 @@
             <button onclick="updateCounter(15)">DODAJ +15</button>
             <button onclick="updateCounter(20)">DODAJ +20</button>
         </div>
-    
+
         <div class="right">
-            <img src="golisz1.jpg" class="golsisz" style="transform:rotate(180deg)">
+            <img src="golisz1.jpg" class="golsisz" style="transform: rotate(180deg)">
             <table class="timer">
-                <td>
-                    <span id="count">0</span>
-                </td>
+                <tr>
+                    <td>
+                        <span id="count">0</span>
+                    </td>
+                </tr>
             </table>
             <img src="golisz1.jpg" class="golsisz2">
             <span class="straz">A WYNIKU STRZEŻE </span>
@@ -65,10 +67,10 @@
 
         function updateCounter(value) {
             const countSpan = document.getElementById('count');
-            let currentCount = parseInt(countSpan.textContent);
+            let currentCount = parseInt(countSpan.innerHTML);
             currentCount += value;
-            countSpan.textContent = currentCount;
-            saveCounter(currentCount); // Save the counter value to localStorage
+            countSpan.innerHTML = currentCount;
+            saveCounter(currentCount); // Save the counter value
         }
 
         function saveCounter(value) {
@@ -79,7 +81,7 @@
             const savedCount = localStorage.getItem('counter');
             const countSpan = document.getElementById('count');
             if (savedCount !== null) {
-                countSpan.textContent = savedCount;
+                countSpan.innerHTML = savedCount;
             }
         }
     </script>

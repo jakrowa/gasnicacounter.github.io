@@ -1,10 +1,44 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="refresh" content="3; url=index.php"> 
-  </head>
-  <body>
-    <input type="text" id="log" >
-<a href='index.php'>index</a>
-<script></script>
-  </body>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top">
+        WITAJ TUTAJ NALICZYSZ PIERDOLENIE GASNICY
+    </div>
+    <div class="left">
+        DODAJ DO LICZNIKA PIERDOLENIA<br>
+        <button onclick="updateCounter(1)">DODAJ +1</button>
+        <button onclick="updateCounter(2)">DODAJ +2</button>
+        <button onclick="updateCounter(5)">DODAJ +5</button>
+        <button onclick="updateCounter(10)">DODAJ +10</button>
+        <button onclick="updateCounter(15)">DODAJ +15</button>
+        <button onclick="updateCounter(20)">DODAJ +20</button>
+    </div>
+    <div class="right">
+        <img src="golisz1.jpg" class="golsisz" style="transform:rotate(180deg)">
+        <table class="timer">
+            <td>
+                <span id="count">0</span>
+            </td>
+        </table>
+        <img src="golisz1.jpg" class="golsisz2" >
+        <span class="straz">A WYNIKU STRZEŻE </span>
+    </div>
+
+    <script>
+        // Function to update the counter value and store it in localStorage
+        function updateCounter(value) {
+            let counter = parseInt(localStorage.getItem('counter')) || 0;
+            counter += value;
+            localStorage.setItem('counter', counter);
+            document.getElementById('count').textContent = counter;
+        }
+
+        // Initialize the counter value from localStorage
+        const initialCounter = parseInt(localStorage.getItem('counter')) || 0;
+        document.getElementById('count').textContent = initialCounter;
+    </script>
+</body>
 </html>

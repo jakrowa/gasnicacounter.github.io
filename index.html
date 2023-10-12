@@ -1,134 +1,85 @@
-
 <!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="top">
-        WITAJ TUTAJ NALICZYSZ PIERDOLENIE GASNICY
-    </div>
-
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>  
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <title>Gaśnica Counter</title>
+  </head>
+  <body>
+    <!-- Notifications -->
+    <div class="notifications"></div>
     <!-- Login Form -->
-    <div class="login-form">
-        <h2>Login</h2>
-        <form onsubmit="return loginUser()">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
-            <button type="submit">Login</button>
+    <div class="wrapper fadeInDown" id="loginForm">
+      <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active">Logowanie</h2>
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img
+            src="./img/userIcon.png"
+            width="50px"
+            height="50px"
+            id="icon"
+            alt="User Icon"
+          />
+        </div>
+
+        <!-- Login Form -->
+        <form action="" method="POST" id="loginForm">
+          <input
+            type="text"
+            id="login"
+            class="fadeIn second"
+            name="login"
+            placeholder="login"
+          />
+          <input
+            type="text"
+            id="password"
+            class="fadeIn third"
+            name="password"
+            placeholder="password"
+          />
+          <input type="submit" class="fadeIn fourth" value="Log In" />
         </form>
-        <p id="login-error" style="color: red; display: none;">Incorrect username or password.</p>
+      </div>
+    </div>
     </div>
 
     <!-- Counter Section -->
-    <div class="counter-section" style="display: none;">
-        <div class="left">
-            DODAJ DO LICZNIKA PIERDOLENIA<br>
-            <button onclick="updateCounter(1)">DODAJ +1</button>
-            <button onclick="updateCounter(2)">DODAJ +2</button>
-            <button onclick="updateCounter(5)">DODAJ +5</button>
-            <button onclick="updateCounter(10)">DODAJ +10</button>
-            <button onclick="updateCounter(15)">DODAJ +15</button>
-            <button onclick="updateCounter(20)">DODAJ +20</button>
-        </div>
-
-        <div class="right">
-            <img src="golisz1.jpg" class="golsisz" style="transform: rotate(180deg)">
-            <table class="timer">
-                <tr>
-                    <td>
-                        <span id="count">0</span>
-                    </td>
-                </tr>
-            </table>
-            <img src="golisz1.jpg" class="golsisz2">
-            <span class="straz">A WYNIKU STRZEŻE </span>
-        </div>
+    <div class="counter-section" id='counter-section' style="display: none;">
+      <div class="top">WITAJ TUTAJ NALICZYSZ PIERDOLENIE GASNICY</div>
+      <div class="left">
+        <h2>Dodaj wartość do licznika: </h2>
+        <button onclick="updateCounter(1)">DODAJ +1</button>
+        <button onclick="updateCounter(2)">DODAJ +2</button>
+        <button onclick="updateCounter(5)">DODAJ +5</button>
+        <button onclick="updateCounter(10)">DODAJ +10</button>
+        <button onclick="updateCounter(15)">DODAJ +15</button>
+        <button onclick="updateCounter(20)">DODAJ +20</button>
+      </div>
+      <span class="straz">WYNIKU STRZEŻE </span>
+      <div class="right">
+        <img src="./img/golisz1.jpg" class="golsisz" style="transform: rotate(180deg)" />
+        <table class="timer">
+          <tr>
+            <td>
+            Licznik : <span id="counterValue">0</span>
+            </td>
+          </tr>
+        </table>
+        <img src="./img/golisz1.jpg" class="golsisz2" />
+      </div>
+      <div class="adminpanel">
+        <button class="admin">Otwórz panel admina</button>
+      </div>
     </div>
-
-    <!-- Firebase Initialization Script -->
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
-
-    <script>
-        // Firebase Initialization
-        var firebaseConfig = {
-apiKey: "AIzaSyBCiswuXhqa5tUe2-DhyZyyC_1nop8dLXU",
-  authDomain: "countergasnica.firebaseapp.com",
-  projectId: "countergasnica",
-  storageBucket: "countergasnica.appspot.com",
-  messagingSenderId: "776426877928",
-  appId: "1:776426877928:web:0c6559a3fcc4c64d206a5d",
-  measurementId: "G-6Z9SFEGPKR"
-};
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-
-        // Load the counter value from local storage and update Firestore
-        function loadCounter() {
-            const savedCount = localStorage.getItem('counter');
-            const countSpan = document.getElementById('count');
-            if (savedCount !== null) {
-                countSpan.innerHTML = savedCount;
-                updateFirestoreCounter(parseInt(savedCount));
-            }
-        }
-
-        // Update Firestore counter
-        function updateFirestoreCounter(value) {
-            var docRef = db.collection("counter").doc("WeDFMFkg05jBtkBcv9MJ");
-
-            // Define the data you want to update
-            var updatedData = {
-                licznik: value
-            };
-
-            // Update the document in Firestore
-            docRef.set(updatedData)
-                .then(function () {
-                    console.log("Firestore document successfully updated!");
-                })
-                .catch(function (error) {
-                    console.error("Error updating Firestore document: ", error);
-                });
-        }
-
-        function loginUser() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (username === 'dupadupa' && password === 'QWERTYUIOPasdfghjkl12') {
-                // Login successful, show the counter section
-                document.querySelector('.login-form').style.display = 'none';
-                document.querySelector('.counter-section').style.display = 'block';
-                loadCounter(); // Load the counter value from localStorage
-                return false; // Prevent form submission
-            } else {
-                // Login failed, display an error message
-                document.getElementById('login-error').style display = 'block';
-                return false; // Prevent form submission
-            }
-        }
-
-        function updateCounter(value) {
-            const countSpan = document.getElementById('count');
-            let currentCount = parseInt(countSpan.innerHTML);
-            currentCount += value;
-            countSpan.innerHTML = currentCount;
-            saveCounter(currentCount); // Save the counter value
-            updateFirestoreCounter(currentCount); // Update Firestore
-        }
-
-        function saveCounter(value) {
-            localStorage.setItem('counter', value);
-        }
-    </script>
-
-    <!-- Call the loadCounter function when the page loads to synchronize the counter value -->
-    <script>
-        window.onload = loadCounter;
-    </script>
-</body>
+    <script type="text/javascript" src="./scripts/firebase-initalize.js"></script>
+    <script type="text/javascript" src="./scripts/notifications.js"></script>
+  </body>
 </html>

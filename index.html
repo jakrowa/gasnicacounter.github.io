@@ -1,9 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="top">
@@ -49,43 +48,59 @@
         </div>
     </div>
 
+    <!-- Firebase Initialization Script -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+
     <script>
-        function loginUser() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // Firebase Initialization
+        var firebaseConfig = {
+apiKey: "AIzaSyBCiswuXhqa5tUe2-DhyZyyC_1nop8dLXU",
+  authDomain: "countergasnica.firebaseapp.com",
+  projectId: "countergasnica",
+  storageBucket: "countergasnica.appspot.com",
+  messagingSenderId: "776426877928",
+  appId: "1:776426877928:web:0c6559a3fcc4c64d206a5d",
+  measurementId: "G-6Z9SFEGPKR"
+}; 
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
 
-            if (username === 'dupadupa' && password === 'QWERTYUIOPasdfghjkl12') {
-                // Login successful, show the counter section
-                document.querySelector('.login-form').style.display = 'none';
-                document.querySelector('.counter-section').style.display = 'block';
-                loadCounter(); // Load the counter value from localStorage
-                return false; // Prevent form submission
-            } else {
-                // Login failed, display an error message
-                document.getElementById('login-error').style.display = 'block';
-                return false; // Prevent form submission
-            }
-        }
-
-        function updateCounter(value) {
-            const countSpan = document.getElementById('count');
-            let currentCount = parseInt(countSpan.innerHTML);
-            currentCount += value;
-            countSpan.innerHTML = currentCount;
-            saveCounter(currentCount); // Save the counter value
-        }
-
-        function saveCounter(value) {
-            localStorage.setItem('counter', value);
-        }
-
+        // Load the counter value from local storage
         function loadCounter() {
             const savedCount = localStorage.getItem('counter');
             const countSpan = document.getElementById('count');
             if (savedCount !== null) {
                 countSpan.innerHTML = savedCount;
+                updateFirestoreCounter(parseInt(savedCount));
             }
         }
+
+        // Update Firestore counter
+        function updateFirestoreCounter(value) {
+            var docRef = db.collection("counter").doc("WeDFMFkg05jBtkBcv9MJ");
+
+            // Define the data you want to update
+            var updatedData = {
+                licznik: value
+            };
+
+            // Update the document in Firestore
+            docRef.set(updatedData)
+                .then(function () {
+                    console.log("Firestore document successfully updated!");
+                })
+                .catch(function (error) {
+                    console.error("Error updating Firestore document: ", error);
+                });
+        }
+
+        // Your existing JavaScript functions (loginUser, updateCounter, etc.) can go here.
+    </script>
+
+    <!-- Call the loadCounter function when the page loads to synchronize the counter value -->
+    <script>
+        window.onload = loadCounter;
     </script>
 </body>
 </html>

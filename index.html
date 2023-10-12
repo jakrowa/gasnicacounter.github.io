@@ -62,11 +62,11 @@ apiKey: "AIzaSyBCiswuXhqa5tUe2-DhyZyyC_1nop8dLXU",
   messagingSenderId: "776426877928",
   appId: "1:776426877928:web:0c6559a3fcc4c64d206a5d",
   measurementId: "G-6Z9SFEGPKR"
-}; 
+};
         firebase.initializeApp(firebaseConfig);
         var db = firebase.firestore();
 
-        // Load the counter value from local storage
+        // Load the counter value from local storage and update Firestore
         function loadCounter() {
             const savedCount = localStorage.getItem('counter');
             const countSpan = document.getElementById('count');
@@ -95,7 +95,35 @@ apiKey: "AIzaSyBCiswuXhqa5tUe2-DhyZyyC_1nop8dLXU",
                 });
         }
 
-        // Your existing JavaScript functions (loginUser, updateCounter, etc.) can go here.
+        function loginUser() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'dupadupa' && password === 'QWERTYUIOPasdfghjkl12') {
+                // Login successful, show the counter section
+                document.querySelector('.login-form').style.display = 'none';
+                document.querySelector('.counter-section').style.display = 'block';
+                loadCounter(); // Load the counter value from localStorage
+                return false; // Prevent form submission
+            } else {
+                // Login failed, display an error message
+                document.getElementById('login-error').style display = 'block';
+                return false; // Prevent form submission
+            }
+        }
+
+        function updateCounter(value) {
+            const countSpan = document.getElementById('count');
+            let currentCount = parseInt(countSpan.innerHTML);
+            currentCount += value;
+            countSpan.innerHTML = currentCount;
+            saveCounter(currentCount); // Save the counter value
+            updateFirestoreCounter(currentCount); // Update Firestore
+        }
+
+        function saveCounter(value) {
+            localStorage.setItem('counter', value);
+        }
     </script>
 
     <!-- Call the loadCounter function when the page loads to synchronize the counter value -->

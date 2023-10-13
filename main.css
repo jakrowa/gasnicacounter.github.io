@@ -580,7 +580,7 @@ input[type="password"]::placeholder {
 }
 
 /* Media Query for Mobile Devices */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   #formContent {
     width: 100%;
     max-width: 100%;
@@ -600,6 +600,10 @@ input[type="password"]::placeholder {
 
   .wrapper {
     padding: 20px;
+  }
+
+  .counter-section {
+    height: 80%;
   }
 
   .counter-section > .left {

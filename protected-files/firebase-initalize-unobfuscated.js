@@ -244,6 +244,9 @@ function updateCounter(newvalue) {
         }
       })
       .then(function () {
+        if(isNaN(newvalue)) {
+          return;
+        }
         notis.create(
           "Zaktualizowano",
           `Licznik został zwiększony o ${newvalue}!`,
@@ -299,6 +302,9 @@ function setCounter(newvalue) {
         }
       })
       .then(function () {
+        if(isNaN(newvalue)) {
+          return;
+        }
         notis.create(
           "Zaktualizowano",
           `Licznik został ustawiony na ${newvalue}!`,

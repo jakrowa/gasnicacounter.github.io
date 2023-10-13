@@ -1,0 +1,24 @@
+# Disable directory browsing
+Options -Indexes
+
+# Block access to specific files
+<Files "main.css">
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files "CNAME">
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Block access to specific folders
+<Directory "scripts">
+  Order allow,deny
+  Deny from all
+</Directory>
+
+<Directory "protected-files">
+  Order allow,deny
+  Deny from all
+</Directory>

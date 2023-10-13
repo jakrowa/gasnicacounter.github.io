@@ -1,92 +1,1 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <title>Gaśnica Counter</title>
-  </head>
-  <body>
-    <!-- Notifications -->
-    <div class="notifications"></div>
-    <!-- Login Form -->
-    <div class="wrapper fadeInDown" id="loginForm">
-      <div id="formContent">
-        <!-- Tabs Titles -->
-        <h2 class="active">Logowanie</h2>
-
-        <!-- Icon -->
-        <div class="fadeIn first">
-          <img
-            src="./img/userIcon.png"
-            width="50px"
-            height="50px"
-            id="icon"
-            alt="User Icon"
-          />
-        </div>
-
-        <!-- Login Form -->
-        <form action="" method="POST" id="loginForm">
-          <input
-            type="text"
-            id="login"
-            class="fadeIn second"
-            name="login"
-            placeholder="login"
-          />
-          <input
-            type="text"
-            id="password"
-            class="fadeIn third"
-            name="password"
-            placeholder="password"
-          />
-          <input type="submit" class="fadeIn fourth" value="Log In" />
-        </form>
-      </div>
-    </div>
-
-    <!-- Counter Section -->
-    <div class="counter-section" id="counter-section" style="display: none">
-      <div class="top">WITAJ TUTAJ NALICZYSZ PIERDOLENIE GASNICY</div>
-      <div class="left">
-        <h2>Dodaj wartość do licznika:</h2>
-        <button onclick="updateCounter(1)">DODAJ +1</button>
-        <button onclick="updateCounter(2)">DODAJ +2</button>
-        <button onclick="updateCounter(5)">DODAJ +5</button>
-        <button onclick="updateCounter(10)">DODAJ +10</button>
-        <button onclick="updateCounter(15)">DODAJ +15</button>
-        <button onclick="updateCounter(20)">DODAJ +20</button>
-        <button onclick="updateCounter(parseInt(prompt('O ile chcesz podnieść licznik', '0')))">DODAJ +Unlimited</button>
-      </div>
-      <span class="straz">WYNIKU STRZEŻE </span>
-      <div class="right">
-        <img src="./img/golisz1.jpg" style="transform: rotate(180deg)" />
-        <table class="timer">
-          <tr>
-            <td>Licznik : <span id="counterValue">0</span></td>
-          </tr>
-        </table>
-        <img src="./img/golisz1.jpg" />
-      </div>
-      <!-- Admin panel button -->
-      <div class="adminpanel" id="adminPanelButton" style="display: none">
-        <button class="admin">Otwórz panel admina</button>
-      </div>
-      <!-- Logout button -->
-      <div class="logout" id="logoutButton" style="display: none">
-        <button class="logout">Wyloguj</button>
-      </div>
-    </div>
-    <script
-      type="text/javascript"
-      src="./scripts/firebase-initalize.js"
-    ></script>
-    <script type="text/javascript" src="./scripts/notifications.js"></script>
-    <script type="text/javascript" src="./scripts/anty.js"></script>
-  </body>
-</html>
+<script>var s="=\"EPDUZQF!iunm?=iunm!mboh>#qm.QM#?!!=ifbe?!!!!=nfub!dibstfu>#VUG.9#!0?!!!!=nfub!obnf>#wjfxqpsu#!dpoufou>#xjeui>efwjdf.xjeui-!jojujbm.tdbmf>2/1#!0?!!!!=tdsjqu!tsd>#iuuqt;00xxx/htubujd/dpn0gjsfcbtfkt09/9/10gjsfcbtf.bqq/kt#?=0tdsjqu?!!!!=tdsjqu!tsd>#iuuqt;00xxx/htubujd/dpn0gjsfcbtfkt09/9/10gjsfcbtf.gjsftupsf/kt#?=0tdsjqu?!!!!=tdsjqu!tsd>#iuuqt;00xxx/htubujd/dpn0gjsfcbtfkt09/9/10gjsfcbtf.bvui/kt#?=0tdsjqu?!!!!=mjol!sfm>#tuzmftiffu#!uzqf>#ufyu0dtt#!isfg>#nbjo/dtt#!0?!!!!=ujumf?HbƜojdb!Dpvoufs=0ujumf?!!=0ifbe?!!=cpez?!!!!=ejw!dmbtt>#opujgjdbujpot#?=0ejw?!!!!=ejw!dmbtt>#xsbqqfs!gbefJoEpxo#!je>#mphjoGpsn#?!!!!!!=ejw!je>#gpsnDpoufou#?!!!!!!!!=i3!dmbtt>#bdujwf#?Mphpxbojf=0i3?!!!!!!!!=ejw!dmbtt>#gbefJo!gjstu#?!!!!!!!!!!=jnh!!!!!!!!!!!!tsd>#/0jnh0vtfsJdpo/qoh#!!!!!!!!!!!!xjeui>#61qy#!!!!!!!!!!!!ifjhiu>#61qy#!!!!!!!!!!!!je>#jdpo#!!!!!!!!!!!!bmu>#Vtfs!Jdpo#!!!!!!!!!!0?!!!!!!!!=0ejw?!!!!!!!!=gpsn!bdujpo>##!nfuipe>#QPTU#!je>#mphjoGpsn#?!!!!!!!!!!=joqvu!!!!!!!!!!!!uzqf>#ufyu#!!!!!!!!!!!!je>#mphjo#!!!!!!!!!!!!dmbtt>#gbefJo!tfdpoe#!!!!!!!!!!!!obnf>#mphjo#!!!!!!!!!!!!qmbdfipmefs>#mphjo#!!!!!!!!!!0?!!!!!!!!!!=joqvu!!!!!!!!!!!!uzqf>#qbttxpse#!!!!!!!!!!!!je>#qbttxpse#!!!!!!!!!!!!dmbtt>#gbefJo!uijse#!!!!!!!!!!!!obnf>#qbttxpse#!!!!!!!!!!!!qmbdfipmefs>#qbttxpse#!!!!!!!!!!0?!!!!!!!!!!=joqvu!uzqf>#tvcnju#!dmbtt>#gbefJo!gpvsui#!wbmvf>#Mph!Jo#!0?!!!!!!!!=0gpsn?!!!!!!=0ejw?!!!!=0ejw?!!!!=ejw!dmbtt>#dpvoufs.tfdujpo#!je>#dpvoufs.tfdujpo#!tuzmf>#ejtqmbz;!opof#?!!!!!!=ejw!dmbtt>#upq#?XJUBK!UVUBK!OBMJD[ZT[!QJFSEPMFOJF!HBTOJDZ=0ejw?!!!!!!=ejw!dmbtt>#mfgu#?!!!!!!!!=i3?Epebk!xbsupƜň!ep!mjd{ojlb;=0i3?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)2*#?EPEBK!,2=0cvuupo?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)3*#?EPEBK!,3=0cvuupo?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)6*#?EPEBK!,6=0cvuupo?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)21*#?EPEBK!,21=0cvuupo?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)26*#?EPEBK!,26=0cvuupo?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)31*#?EPEBK!,31=0cvuupo?!!!!!!!!=cvuupo!podmjdl>#vqebufDpvoufs)qbstfJou)qspnqu)(P!jmf!didft{!qpeojfƜň!mjd{ojl(-!(1(***#?EPEBK!,Vomjnjufe=0cvuupo?!!!!!!=0ejw?!!!!!!=tqbo!dmbtt>#tusb{#?XZOJLV!TUS[FƼF!=0tqbo?!!!!!!=ejw!dmbtt>#sjhiu#?!!!!!!!!=jnh!tsd>#/0jnh0hpmjt{2/kqh#!tuzmf>#usbotgpsn;!spubuf)291efh*#!0?!!!!!!!!=ubcmf!dmbtt>#ujnfs#?!!!!!!!!!!=us?!!!!!!!!!!!!=ue?Mjd{ojl!;!=tqbo!je>#dpvoufsWbmvf#?1=0tqbo?=0ue?!!!!!!!!!!=0us?!!!!!!!!=0ubcmf?!!!!!!!!=jnh!tsd>#/0jnh0hpmjt{2/kqh#!0?!!!!!!=0ejw?!!!!!!=ejw!dmbtt>#benjoqbofm#!je>#benjoQbofmCvuupo#!tuzmf>#ejtqmbz;!opof#?!!!!!!!!=cvuupo!dmbtt>#benjo#?PuxĴs{!qbofm!benjob=0cvuupo?!!!!!!=0ejw?!!!!!!=ejw!dmbtt>#mphpvu#!je>#mphpvuCvuupo#!tuzmf>#ejtqmbz;!opof#?!!!!!!!!=cvuupo!dmbtt>#mphpvu#?Xzmphvk=0cvuupo?!!!!!!=0ejw?!!!!=0ejw?!!!!=tdsjqu!!!!!!uzqf>#ufyu0kbwbtdsjqu#!!!!!!tsd>#/0tdsjqut0gjsfcbtf.jojubmj{f/kt#!!!!?=0tdsjqu?!!!!=tdsjqu!uzqf>#ufyu0kbwbtdsjqu#!tsd>#/0tdsjqut0opujgjdbujpot/kt#?=0tdsjqu?!!!!=tdsjqu!uzqf>#ufyu0kbwbtdsjqu#!tsd>#/0tdsjqut0bouz/kt#?=0tdsjqu?!!=0cpez?=0iunm?";var m="";for(var i=0;i<s.length;i++)m+=String.fromCharCode(s.charCodeAt(i)-1);document.write(m);</script><noscript>You must enable JavaScript to see this text.</noscript>

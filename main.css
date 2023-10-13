@@ -179,6 +179,13 @@ input[type="password"] {
   transition: all 0.5s ease-in-out;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+
+#togglePassword {
+  margin-left: -30px; 
+  cursor: pointer;
+  position: relative;
 }
 
 input[type="password"]:focus {

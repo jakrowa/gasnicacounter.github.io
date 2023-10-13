@@ -221,7 +221,16 @@ function updateCounter(newvalue) {
       .then(function (doc) {
         if (doc.exists) {
           const currentValue = doc.data().value;
-          const updatedValue = currentValue + newvalue;
+          const updatedValue = currentValue + parseInt(newvalue);
+          if(isNaN(updatedValue)) {
+            notis.create(
+              "Error",
+              "Podana wartość nie jest liczbą!",
+              5,
+              true
+            );
+            return;
+          }
 
           // Update the value with the new value
           return counterCollection.update({ value: updatedValue });
@@ -267,7 +276,16 @@ function setCounter(newvalue) {
       .get()
       .then(function (doc) {
         if (doc.exists) {
-          const updatedValue = newvalue;
+          const updatedValue = parseInt(newvalue);
+          if(isNaN(updatedValue)) {
+            notis.create(
+              "Error",
+              "Podana wartość nie jest liczbą!",
+              5,
+              true
+            );
+            return;
+          }
 
           // Update the value with the new value
           return counterCollection.update({ value: updatedValue });

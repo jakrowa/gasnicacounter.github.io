@@ -588,6 +588,11 @@ input[type="password"]::placeholder {
 
 /* Media Query for Mobile Devices */
 @media (max-width: 1000px) {
+
+  body {
+    overflow: auto;
+  }
+  
   #formContent {
     width: 100%;
     max-width: 100%;
